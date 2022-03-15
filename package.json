@@ -1,0 +1,19 @@
+{
+  "name": "fill-object",
+  "version": "0.1.0",
+  "description": "Fill deep properties missing in an object based on a source",
+  "main": "index.js",
+  "repository": "https://github.com/Giancarl021/fill-object.git",
+  "scripts": {
+    "generate-types": "npx tsc index.js --declaration --emitDeclarationOnly --allowJs",
+    "test": "node test.spec.js"
+  },
+  "dependencies": {
+    "clone": "^2.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  },
+  "author": "Giancarlo Fontela da Luz <gian.f.luz@hotmail.com>",
+  "license": "MIT"
+}
