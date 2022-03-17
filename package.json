@@ -1,6 +1,6 @@
 {
   "name": "fill-object",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fill deep properties missing in an object based on a source",
   "main": "index.js",
   "repository": "https://github.com/Giancarl021/fill-object.git",
