@@ -1,8 +1,8 @@
 const clone = require('clone');
 
 module.exports = function (origin, source, overwriteOnTypeConflict = false) {
-    if (typeof origin !== 'object') throw new Error('origin must be an object');
-    if (typeof source !== 'object') throw new Error('source must be an object');
+    if (typeof origin !== 'object' && origin !== null) throw new Error('origin must be an not null object');
+    if (typeof source !== 'object' && source !== null) throw new Error('source must be an not null object');
 
     const r = clone(origin);
 
@@ -19,7 +19,7 @@ module.exports = function (origin, source, overwriteOnTypeConflict = false) {
             return;
         }
 
-        if (typeof targetValue !== typeof sourceValue && typeof targetValue !== 'object') {
+        if (typeof targetValue !== typeof sourceValue && (typeof targetValue !== 'object' || targetValue === null)) {
             if (overwriteOnTypeConflict) {
                 target[key] = clone(sourceValue);
             }
