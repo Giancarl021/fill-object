@@ -19,7 +19,7 @@ module.exports = function (origin, source, overwriteOnTypeConflict = false) {
             return;
         }
 
-        if (typeof targetValue !== typeof sourceValue && (typeof targetValue !== 'object' || targetValue === null)) {
+        if (typeof targetValue !== typeof sourceValue && (typeof targetValue !== 'object' || isNullOrUndefined(targetValue)) && !isNullOrUndefined(sourceValue)) {
             if (overwriteOnTypeConflict) {
                 target[key] = clone(sourceValue);
             }
@@ -33,5 +33,9 @@ module.exports = function (origin, source, overwriteOnTypeConflict = false) {
         }
 
         target[key] = targetValue;
+    }
+
+    function isNullOrUndefined(value) {
+        return value === null || value === undefined;
     }
 }
