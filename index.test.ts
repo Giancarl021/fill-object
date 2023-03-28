@@ -9,6 +9,8 @@ const EMPTY_OBJ = {} as const;
 const PARTIAL_OBJ = { a: 1 };
 const FILLED_OBJ = { a: 1, b: 2 };
 
+test('Vibe check', () => {});
+
 test('Empty object on both arguments must return empty object', () => {
     const result = fillObject(EMPTY_OBJ, EMPTY_OBJ);
 

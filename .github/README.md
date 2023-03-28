@@ -1,59 +1,103 @@
 # fill-object
 
-Fill object properties missing in an object based on a default object
+![](assets/logo.png)
+
+Fill deep properties missing in an object based on a default object
+## Similar projects
+
+* [Lodash/defaultsDeep](https://lodash.com/docs/4.17.15#defaultsDeep) - Lodash function;
+* [defaults](https://www.npmjs.com/package/defaults) - NPM package;
+
+## Why?
+
+This package is a simple and lightweight alternative to the Lodash function, to fill an partial object with a default value. This package is made specifically to deal with nested options objects, where a schema must be followed, so, as a side-effect, any property that is not in the schema will be removed.
 
 ## Installation
 
-npm:
-
-```bash
-npm install --save fill-object
-```
-
-Yarn:
-
-```bash
-yarn add fill-object
-```
+You can get this package on [NPM](https://www.npmjs.com/package/fill-object).
 
 ## Usage
 
-First, import the library:
+### Importing
 
-```javascript
-const fillObject = require('fill-object');
+CommonJS:
+
+```ts
+const fillObject = require('fillObject');
 ```
 
-Then you can use the imported function to infer the type of a string input:
+ES Modules:
 
-```javascript
-const defaultUser = {
-    name: 'Unknown',
-    age: 0,
-    job: 'Unknown'
+```js
+import fillObject from 'fillObject';
+```
+
+### Calling
+
+The `fillObject` function require two parameters and accepts a third optional parameter:
+
+```ts
+export = function fillObject<T extends {}>(
+    partialValue: Partial<T>,
+    defaultValue: T,
+    overwriteOnTypeMismatch: boolean = false
+): T
+```
+
+* `partialValue (Partial<T>)`: The partial value to be filled;
+* `defaultValue (T)`: The default value to fill the partial value;
+* `overwriteOnTypeMismatch (boolean)`: If `true`, the value will be overwritten if the types do not match. Defaults to `false`.
+
+### Examples
+
+```ts
+const defaultOptions = {
+    a: 1,
+    b: 2,
+    c: 3
 };
+```
 
-function fillUser(user = {}) {
-    return fillObject(user, defaultUser);
-}
+**Usual filling:**
 
-const user = fillUser({ name: 'Giancarlo' });
+```ts
+const options = fillObject({ a: 10 }, defaultOptions);
 
-console.log(user); // { name: 'Giancarlo', age: 0, job: 'Unknown' }
+console.log(options);
+// -> { a: 10, b: 2, c: 3 }
+```
+
+**Removing extra properties:**
+
+```ts
+const options = fillObject({ a: 10, d: 4 } as any, defaultOptions);
+
+console.log(options);
+// -> { a: 10, b: 2, c: 3 }
+```
+
+**Type mismatch default behavior:**
+
+```ts
+const options = fillObject({ a: '10' } as any, defaultOptions);
+
+console.log(options);
+// -> { a: '10', b: 2, c: 3 }
+```
+
+**Type mismatch with `overwriteOnTypeMismatch` set to `true`:**
+
+```ts
+const options = fillObject({ a: '10' } as any, defaultOptions, true);
+
+console.log(options);
+// -> { a: 1, b: 2, c: 3 }
 ```
 
 ## Tests
 
-If you want to test the library, you can run the tests by running the following commands on the root of the project:
+This library uses [Jest](https://jestjs.io/) for testing. To run the tests, use the following command:
 
-npm:
-```bash
-npm install
-npm test
-```
-
-Yarn:
-```bash
-yarn
+```sh
 yarn test
 ```

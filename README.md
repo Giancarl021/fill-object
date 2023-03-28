@@ -1,59 +1,15 @@
 # fill-object
 
-Fill deep properties missing in an object based on a source
+Fill deep properties missing in an object based on a default object
+## Similar projects
 
-## Installation
+* [Lodash/defaultsDeep](https://lodash.com/docs/4.17.15#defaultsDeep) - Lodash function;
+* [defaults](https://www.npmjs.com/package/defaults) - NPM package;
 
-npm:
+## Why?
 
-```bash
-npm install --save fill-object
-```
+This package is a simple and lightweight alternative to the Lodash function, to fill an partial object with a default value. This package is made specifically to deal with nested options objects, where a schema must be followed, so, as a side-effect, any property that is not in the schema will be removed.
 
-Yarn:
+## Documentation and Source-Code
 
-```bash
-yarn add fill-object
-```
-
-## Usage
-
-First, import the library:
-
-```javascript
-const fillObject = require('fill-object');
-```
-
-Then you can use the imported function to infer the type of a string input:
-
-```javascript
-const defaultUser = {
-    name: 'Unknown',
-    age: 0,
-    job: 'Unknown'
-};
-
-function fillUser(user = {}) {
-    return fillObject(user, defaultUser);
-}
-
-const user = fillUser({ name: 'Giancarlo' });
-
-console.log(user); // { name: 'Giancarlo', age: 0, job: 'Unknown' }
-```
-
-## Tests
-
-If you want to test the library, you can run the tests by running the following commands on the root of the project:
-
-npm:
-```bash
-npm install
-npm test
-```
-
-Yarn:
-```bash
-yarn
-yarn test
-```
+You can find the full documentation and source-code of this package [here](https://github.com/Giancarl021/fill-object).

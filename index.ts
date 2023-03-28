@@ -1,6 +1,6 @@
 import clone from 'clone';
 
-export = function <T extends {}>(
+export = function fillObject<T extends {}>(
     partialValue: Partial<T>,
     defaultValue: T,
     overwriteOnTypeMismatch: boolean = false
