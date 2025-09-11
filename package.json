@@ -10,8 +10,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "test:coverage": "jest --coverage",
-    "ci": "yarn --frozen-lockfile"
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "clone": "^2.1.2"

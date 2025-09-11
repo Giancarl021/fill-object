@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 22
       - run: corepack enable yarn
-      - run: yarn ci
+      - run: yarn install --immutable
       - run: yarn test
       - run: yarn build
       - run: yarn publish --access=public --use-yarnrc '.yarnrc.yml'
