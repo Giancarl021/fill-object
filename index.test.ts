@@ -86,3 +86,17 @@ test('Circular references must not affect the defaultValue', () => {
     expect(defaultValue.d.a).toEqual(1);
     expect(defaultValue.d).toEqual(defaultValue);
 });
+
+test('Arrays must not be mutated', () => {
+    const partial = { a: [], b: null, c: [1, 2, 3] };
+    const defaultValue = {
+        a: [1, 2, 3],
+        b: [],
+        c: [4, 5, 6],
+        d: ['a', 'b', 'c']
+    };
+    
+    const result = fillObject(partial as any, defaultValue);
+    
+    expect(result).toEqual({ a: [], b: [], c: [1, 2, 3], d: ['a', 'b', 'c']});
+});

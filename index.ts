@@ -63,6 +63,23 @@ export = function fillObject<T extends {}>(
             return;
         }
 
+        // Both are objects, but if partialValueProp is an array, no mutation is done
+        if (
+            Array.isArray(partialValueProp) &&
+            Array.isArray(defaultValueProp)
+        ) {
+            return;
+        }
+
+        // If one is an array and the other is not, handle type mismatch
+        if (Array.isArray(partialValueProp) !== Array.isArray(defaultValueProp)) {
+            if (isNullOrUndefined(partialValueProp) || overwriteOnTypeMismatch) {
+                partialValue[key] = clone(defaultValueProp, true);
+            }
+
+            return;
+        }
+
         // Value not an object, short circuiting
         // typeof defaultValueProp === typeof partialValueProp, so if defaultValueProp is not an object,
         // partialValueProp is not an object too
